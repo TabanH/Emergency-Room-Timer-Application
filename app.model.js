@@ -17,9 +17,16 @@ function deletePatient(id,callback)
 function addPatient(patient,callback)
 {
   db.run("INSERT INTO Patients VALUES (?,?,?,?)",
-         [patient.firstname, patient.lastname, patient.ernumber, patient.contact],
-         function(err) { callback(); });
+         [patient.fname, patient.lname, patient.ernumber, patient.contact],
+         function(err) {callback()});
 }
 
+function addPatients(patient,callback)
+{
+
+  db.run("INSERT INTO Patients VALUES (?,?,?,?)",
+         [patient.fname, patient.lname, patient.ernumber, patient.contact],
+         function(err) {callback()});
+}
 // export the functions we have defined
-module.exports = {getAllPatients, deletePatient, addPatient};
+module.exports = {getAllPatients, deletePatient, addPatient,addPatients};
