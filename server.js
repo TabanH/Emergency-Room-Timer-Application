@@ -1,6 +1,7 @@
 const http = require("http");
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
 
 // include the mustache template engine for express
 const mustacheExpress = require('mustache-express');
@@ -18,10 +19,10 @@ app.set('view engine', 'mustache');
 // files should have the extension filename.mustache
 app.set('views', __dirname + '/views');
 
-// addpatient action handles add form submit, inserts new patient into table
-app.get('/addpatient', function(req,res) {
+app.use(bodyParser.urlencoded({ extended: false }));
 
-   // 2. render the page with the realtor data
+app.post('/',function(req,res){
+
   function renderPage(patientArray) {
     res.render('index', { patients: patientArray});
   }
@@ -31,9 +32,9 @@ app.get('/addpatient', function(req,res) {
   }
 
   // 1. get all the patients, then render the page
-    Model.addRealtor(req.query, getPatients);
-  
-});
+    Model.addPatients(req.body, getPatients);
+})
+
 
 // default action: render the page with realtor data
 app.get('/', function(req,res) {
