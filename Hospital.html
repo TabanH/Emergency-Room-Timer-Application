@@ -28,11 +28,11 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 
     <div class="container-fluid">
     
-        <form action="http://localhost:8081/" method="post" class="col-lg-6" novalidate>
+        <form action="http://localhost:8081/" method="post" id="myForm" class="col-lg-6 ml-2" novalidate>
 
             <br><br>
             <div class="form-group">
-                <label for="fname">First name:</label>
+                <label for="fname">First name: <span style="color: red;">*</span></label>
                 <input type="text" class="form-control" id="fname" name="fname" required=""><br><br>
                 <div class="valid-feedback">
                  Looks good!
@@ -42,7 +42,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
                 </div>
             </div>
             <div class="form-group">
-                <label for="lname">Last name:</label>
+                <label for="lname">Last name: <span style="color: red;">*</span></label>
                 <input type="text" class="form-control" id="lname" name="lname" required=""><br><br>
             </div>
             <div class="form-group">
@@ -52,11 +52,11 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
                 <label for="dob">Date of Birth:</label>
                 <input type="date" class="form-control" id="dob" name="dob"><br><br>
             <div class="form-group">
-                <label for="contact">Phone#:</label>
+                <label for="contact">Phone#: <span style="color: red;">*</span></label>
                 <input type="text" class="form-control" id="contact" name="contact"><br><br>
             </div>
             <div class="form-group">
-                <label for="contact">CTAS Level:</label>
+                <label for="contact">CTAS Level: <span style="color: red;">*</span></label>
                 <select class="form-control" id="level">
                   <option selected="">Choose...</option>
                   <option>Level 1: Resuscitation</option>
@@ -68,6 +68,9 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
             </div><br><br>
             <button type="submit" class="btn btn-secondary">Add To List</button>
         </form>
+    </div>
+    <div class="container-fluid mt-3">
+
     </div>
     <footer class="container footer mt-auto">
         <div class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
@@ -93,19 +96,30 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script>
-//     $('#myForm').submit(function(e){
-//     e.preventDefault();
-//     var url = $(this).closest('form').attr('action'),
-//     data = $(this).closest('form').serialize();
-//     $.ajax({
-//         url: "http://localhost:8081/",
-//         type: 'post',
-//         data: data,
-//         success:function(){
-//             // Whatever you want to do after the form is successfully submitted
-//             window.alert("Your request has been processed.");
-//         }
-//     });
-// });
+     $('#myForm').submit(function(e){
+     e.preventDefault();
+
+     if($('#level').val()=='Level 5: Non-Urgent'){
+
+         var url = $(this).closest('form').attr('action'),
+         data = $(this).closest('form').serialize();
+         var date = new Date();
+         var time = "&arrive=" + date.getHours() + ":" + date.getMinutes();
+         data += time;
+         $.ajax({
+             url: "http://localhost:8081/",
+             type: 'POST',
+             data: data,
+             success:function(){
+                 // Whatever you want to do after the form is successfully submitted
+                 window.alert("Your request has been processed.");
+             }
+         });
+     }else{
+          window.alert("Hospital CTAS Level 1-4 operation has been processed.");
+     }
+
+    
+     });
 </script>
 </html>

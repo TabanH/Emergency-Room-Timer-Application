@@ -25,13 +25,14 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
             </div>
         </nav>
     </header>
-	<div class="container-fluid">
+	<div class="container-fluid ">
 		<table class="col-lg-10 table table-striped table-hover mt-5">
 			<thead>
 				<tr>
 					<th scope="col">ERID </th>
 					<th scope="col">First Name</th>
 					<th scope="col">Last Name </th>
+					<th scope="col">Arrival Time</th>
 					<th scope="col">Estimate Waiting </th>
 				</tr>
 			</thead>
@@ -41,7 +42,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 					<td>{{ernumber}}</td>
 					<td>{{firstname}}</td>
 					<td>{{lastname}}</td>
-					<td>TBD</td>
+					<td>{{arrive}}</td>
 				</tr>
 				{{/patients}}
 			</tbody>
@@ -55,7 +56,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
                 <use xlink:href="#bootstrap"></use>
                 </svg>
             </a>
-            <span class="text-muted">© 2023 ERTA waiting list. all rights reserved. </span>
+            <span class="text-muted">© 2023 ERTA Waiting. All rights reserved. </span>
             </div>
             <ul class="nav col-md-4 justify-content-end">
             <li class="nav-item"><a href="index.html" class="nav-link px-2 text-muted">Home</a></li>
