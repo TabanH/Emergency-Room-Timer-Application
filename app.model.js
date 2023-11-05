@@ -16,17 +16,10 @@ function deletePatient(id,callback)
 // insert an patient into the table
 function addPatient(patient,callback)
 {
-  db.run("INSERT INTO Patients VALUES (?,?,?,?)",
-         [patient.fname, patient.lname, patient.ernumber, patient.contact],
+  db.run("INSERT INTO Patients VALUES (?,?,'ER'||(SELECT COALESCE(max(rowid),0)+1 FROM Patients),?,?)",
+         [patient.fname, patient.lname, patient.arrive, patient.contact],
          function(err) {callback()});
 }
 
-function addPatients(patient,callback)
-{
-
-  db.run("INSERT INTO Patients VALUES (?,?,?,?)",
-         [patient.fname, patient.lname, patient.ernumber, patient.contact],
-         function(err) {callback()});
-}
 // export the functions we have defined
-module.exports = {getAllPatients, deletePatient, addPatient,addPatients};
+module.exports = {getAllPatients, deletePatient, addPatient};

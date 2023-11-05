@@ -3,6 +3,13 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 
+//Sending an SMS
+//var TMClient = require('textmagic-rest-client');
+//var c = new TMClient('username', 'C7XDKZOQZo6HvhJwtUw0MBcslfqwtp4');
+//c.Messages.send({text: 'Test Messages, Fred!', phones:'9057830416'}, function(err, res){
+//    console.log('Messages.send()', err, res);
+//});
+
 // include the mustache template engine for express
 const mustacheExpress = require('mustache-express');
 
@@ -31,8 +38,11 @@ app.post('/',function(req,res){
         Model.getAllPatients(renderPage)
   }
 
-  // 1. get all the patients, then render the page
-    Model.addPatients(req.body, getPatients);
+  if (req.body.lname != null) {
+    req.body.lname = req.body.lname.charAt(0).toUpperCase() + '.'; // Keep the initial and add a period
+  }
+
+  Model.addPatient(req.body, getPatients);
 })
 
 
@@ -55,3 +65,5 @@ app.get(/^(.+)$/, function(req,res) {
 });
 
 app.listen(8081, function() { console.log("server listening..."); } );
+
+
