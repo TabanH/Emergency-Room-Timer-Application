@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en-CA" class="h-100">
 <!--head-->
 <head>
@@ -33,7 +33,8 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 					<th scope="col">First Name</th>
 					<th scope="col">Last Name </th>
 					<th scope="col">Arrival Time</th>
-					<th scope="col">Estimate Waiting</th>
+					<th scope="col">Estimate Waiting </th>
+                    <th scope="col">Check In </th>
 				</tr>
 			</thead>
 			<tbody>
@@ -43,6 +44,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 					<td>{{firstname}}</td>
 					<td>{{lastname}}</td>
 					<td>{{arrive}}</td>
+                    <td><a href="/admin/sendNotify">Ok</a></td>      
 				</tr>
 				{{/patients}}
 			</tbody>
@@ -64,6 +66,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
         </div>
     </footer>
 </body>
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
