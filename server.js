@@ -2,6 +2,8 @@ const http = require("http");
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+require('dotenv').config();
+
 
 //Sending an SMS
 //var TMClient = require('textmagic-rest-client');
@@ -51,7 +53,7 @@ app.post('/',function(req,res){
 })
 
 
-// default action: render the page with realtor data
+// default action: render the page with data
 app.get('/', function(req,res) {
 
   // 2. render the page with the realtor data
@@ -63,6 +65,8 @@ app.get('/', function(req,res) {
   Model.getAllPatients(renderPage);
 
 });
+
+app.use('/admin',require('./contollers/admin.js'))
 
 // catch-all router case intended for static files
 app.get(/^(.+)$/, function(req,res) {
