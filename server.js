@@ -38,6 +38,11 @@ app.post('/',function(req,res){
         Model.getAllPatients(renderPage)
   }
 
+  
+  if (req.body.fname != null) {
+    req.body.fname = req.body.fname.charAt(0).toUpperCase() + req.body.fname.slice(1).toLowerCase();
+  }
+
   if (req.body.lname != null) {
     req.body.lname = req.body.lname.charAt(0).toUpperCase() + '.'; // Keep the initial and add a period
   }

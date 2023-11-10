@@ -28,22 +28,16 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 
     <div class="container-fluid">
     
-        <form action="http://localhost:8081/" method="post" id="myForm" class="col-lg-6 ml-2" novalidate>
+        <form action="http://localhost:8081/" method="post" id="myForm" class="col-lg-6 ml-2">
 
             <br><br>
             <div class="form-group">
                 <label for="fname">First name: <span style="color: red;">*</span></label>
-                <input type="text" class="form-control" id="fname" name="fname" required=""><br><br>
-                <div class="valid-feedback">
-                 Looks good!
-                </div>
-                <div class="invalid-feedback">
-                 Please enter your first name.
-                </div>
+                <input type="text" class="form-control" id="fname" name="fname" required><br><br>
             </div>
             <div class="form-group">
                 <label for="lname">Last name: <span style="color: red;">*</span></label>
-                <input type="text" class="form-control" id="lname" name="lname" required=""><br><br>
+                <input type="text" class="form-control" id="lname" name="lname" required><br><br>
             </div>
             <div class="form-group">
                 <label for="hcard">Health Card:</label>
@@ -53,12 +47,12 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
                 <input type="date" class="form-control" id="dob" name="dob"><br><br>
             <div class="form-group">
                 <label for="contact">Phone#: <span style="color: red;">*</span></label>
-                <input type="text" class="form-control" id="contact" name="contact"><br><br>
+                <input type="text" class="form-control" id="contact" name="contact" required><br><br>
             </div>
             <div class="form-group">
                 <label for="contact">CTAS Level: <span style="color: red;">*</span></label>
-                <select class="form-control" id="level">
-                  <option selected="">Choose...</option>
+                <select class="form-control" id="level" required>
+                  <option selected disabled value="">Choose...</option>
                   <option>Level 1: Resuscitation</option>
                   <option>Level 2: Emergent</option>
                   <option>Level 3: Urgent</option>
@@ -68,9 +62,6 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
             </div><br><br>
             <button type="submit" class="btn btn-secondary">Add To List</button>
         </form>
-    </div>
-    <div class="container-fluid mt-3">
-
     </div>
     <footer class="container footer mt-auto">
         <div class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
