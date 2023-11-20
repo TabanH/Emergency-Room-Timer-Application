@@ -26,8 +26,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
         </nav>
     </header>
 
-    <div class="container-fluid">
-    
+    <div class="container-fluid">   
         <form action="http://localhost:8081/" method="post" id="myForm" class="col-lg-6 ml-2">
 
             <br><br>
@@ -71,7 +70,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
                 <use xlink:href="#bootstrap"></use>
                 </svg>
             </a>
-            <span class="text-muted">© 2023 Ontario Health Center all rights reserved. </span>
+            <span class="text-muted">© 2023 Ontario Health Center. All Rights Reserved. </span>
             </div>
             <ul class="nav col-md-4 justify-content-end">
             <li class="nav-item"><a href="index.html" class="nav-link px-2 text-muted">Home</a></li>
@@ -98,7 +97,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
          var time = "&arrive=" + date.getHours() + ":" + date.getMinutes();
          data += time;
          $.ajax({
-             url: "http://localhost:8081/",
+             url: "http://localhost:8081/admin",
              type: 'POST',
              data: data,
              success:function(){

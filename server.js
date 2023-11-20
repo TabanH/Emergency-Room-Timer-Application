@@ -30,39 +30,53 @@ app.set('views', __dirname + '/views');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.post('/',function(req,res){
+const predict_wait_time = (req, res, next) => {
+    
+    function output(result) {
+        numOfPatients = result[0]['count'];
+        //Set default value 17 mins for each patient in emergency 
+        waitingTime = numOfPatients * 17;
+        /*
+        waitingTime = 0;
+        while(numOfPatients>0){
+            random = Math.floor(Math.random() * (20 - 15 + 1)) + 15;
+            waitingTime += random;
+            numOfPatients--;
+        }
+        //res.render('index',{estimate: waitingTime});
+        */
+        req.waitingTime = waitingTime;
+        //console.log('Current Waiting Time: ' + waitingTime);
+    }
 
+    Model.getEstimatetime(output);
+
+    next();
+};
+
+app.use(predict_wait_time);
+
+app.get('/update',function(req,res){
   function renderPage(patientArray) {
     res.render('index', { patients: patientArray});
   }
 
   function getPatients(){
-        Model.getAllPatients(renderPage)
+    Model.getAllPatients(renderPage)
   }
-
-  
-  if (req.body.fname != null) {
-    req.body.fname = req.body.fname.charAt(0).toUpperCase() + req.body.fname.slice(1).toLowerCase();
-  }
-
-  if (req.body.lname != null) {
-    req.body.lname = req.body.lname.charAt(0).toUpperCase() + '.'; // Keep the initial and add a period
-  }
-
-  Model.addPatient(req.body, getPatients);
+  Model.updatePatientStatus(req.body, getPatients);
 })
-
 
 // default action: render the page with data
 app.get('/', function(req,res) {
 
   // 2. render the page with the realtor data
   function renderPage(patientArray) {
-    res.render('index', { patients: patientArray});
+    res.render('index', { patients: patientArray, estimate: req.waitingTime});
   }
 
   // 1. get all the patients, then render the page
-  Model.getAllPatients(renderPage);
+  Model.getAllPatientsInWaitingList(renderPage);
 
 });
 

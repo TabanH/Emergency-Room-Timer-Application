@@ -1,8 +1,8 @@
 const express = require('express');
-var router = express.Router();
+var app = express.Router();
 const sqlite3 = require("sqlite3").verbose();
 var db = new sqlite3.Database("database.db");
-const Model = require('../app.model')
+const Model = require('../app.model');
 
 
 //Pls create an .env file annd save the follow info
@@ -13,7 +13,41 @@ const Model = require('../app.model')
 var config = require('../config');
 var client = require('twilio')(config.accountSid, config.authToken);
 
-router.get('/', function(req,res) {
+
+/*
+const notification = (req, res, next) => {
+    phone = '+1' + req.body.contact
+    client.messages
+        .create({
+            body: 'This is a Hospital Emergency Department. Your have successfully checked-in, and we put you in a waiting list now. Please be patient and visit this 192.168.2.168 to see the detailed list. ',
+            from: config.phoneNumber,
+            to: phone  // here should feed in client phone number
+        })
+        .then(message => console.log(`Message sent with SID: ${message.sid}`))
+        .catch(error => console.error(error));
+
+        next();
+};
+
+
+app.use(notification);
+
+*/
+function sendNotification(contact, redirectPath, res){
+  const phone = '+1' + contact;
+  const messageBody = 'This is a Hospital Emergency Department. You have successfully checked in, and we put you in a waiting list now. Please be patient and visit http://192.168.2.168:8081 to see the detailed list.';
+
+  client.messages
+    .create({
+      body: messageBody,
+      from: config.phoneNumber,
+      to: phone,
+    })
+    .then(message => console.log(`Message sent with SID: ${message.sid}`))
+    .catch(error => console.error(error));
+}
+
+app.get('/', function(req,res) {
 
     // 2. render the page with the realtor data
     function renderPage(patientArray) {
@@ -25,18 +59,43 @@ router.get('/', function(req,res) {
   
 });
 
-router.get("/sendNotify", function (req, res) {
+app.post('/',function(req,res){
+
+  function renderPage(patientArray) {
+    res.render('admin', { patients: patientArray});
+  }
+
+  function getPatients(){
+    Model.getAllPatients(renderPage)
+  }
+
+  
+  if (req.body.fname != null) {
+    req.body.fname = req.body.fname.charAt(0).toUpperCase() + req.body.fname.slice(1).toLowerCase();
+  }
+
+  if (req.body.lname != null) {
+    req.body.lname = req.body.lname.charAt(0).toUpperCase() + '.'; // Keep the initial and add a period
+  }
+
+  Model.addPatient(req.body, getPatients);
+  //uncommnet next lane will triger auto-notification service 
+  //sendNotification(req.body.contact, "/admin", res);
+})
+
+/*
+app.post("/sendNotification", function (req, res) {
+    phone = '+1' + req.body.contact;
     client.messages
         .create({
-            body: 'Hello, this is a test message!',
+            body: 'This is a Hospital Emergency Department. Your have successfully checked-in, and we put you in a waiting list now. Please be patient and visit this 192.168.2.168 to see the detailed list. ',
             from: config.phoneNumber,
-            to: '+19058080718'
+            to: phone  // here should feed in client phone number
         })
         .then(message => console.log(`Message sent with SID: ${message.sid}`))
         .catch(error => console.error(error));
 
         res.redirect("/admin");
 });
-
-
-module.exports = router;
+*/
+module.exports = app;

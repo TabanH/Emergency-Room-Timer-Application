@@ -5,10 +5,10 @@ db.serialize(function() {
 
   // create Patient table
   db.run("DROP TABLE IF EXISTS Patients");
-  db.run("CREATE TABLE Patients (firstname TEXT, lastname TEXT, ernumber TEXT, arrive TEXT, contact TEXT)");
+  db.run("CREATE TABLE Patients (firstname TEXT, lastname TEXT, ernumber TEXT, arrive TEXT, contact TEXT, status TEXT)");
 
   // insert records into the realtors table
-  //db.run("INSERT INTO Patients VALUES (?,?,?,?,?)", ['Fred','L.','ER01','00:00','9057830001']);
+  //db.run("INSERT INTO Patients VALUES (?,?,?,?,?)", ['Fred','L.','ER01','00:00','9057830001',"Waiting"]);
 
 
 });
