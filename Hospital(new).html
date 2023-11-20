@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en-CA" class="h-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hospital Demo</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body class="d-flex flex-column h-100">
+    <header>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ADD8E6;">
+            <div class="container">
+                <a class="navbar-brand text-white font-weight-bold fs-4" href="#">
+                    <img src="https://thumbs.dreamstime.com/z/hospital-symbol-pictogram-illustration-blue-background-hospital-symbol-pictogram-illustration-139064365.jpg?w=768" 
+                        alt="Hospital Logo" width="30" height="30" class="d-inline-block align-top">
+                    Hospital
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+            </div>
+        </nav>
+         
+    </header>
+
+    <div class="container mt-4">
+        <form action="http://localhost:8081/" method="post" id="myForm" class="col-lg-6 mx-auto" novalidate>
+            <img src="https://perkinswill.com/wp-content/uploads/2022/05/NurseStation1.jpg" alt="Triage Room Image" class="img-fluid mx-auto d-block mt-4">
+            <div class="mb-3">
+                <label for="fname" class="form-label text-muted font-weight-bold fs-4">First name: <span style="color: red;">*</span></label>
+                <input type="text" class="form-control" id="fname" name="fname" required>
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">Please enter your first name.</div>
+            </div>
+            <div class="mb-3">
+                <label for="lname" class="text-muted font-weight-bold fs-4">Last name: <span style="color: red;">*</span></label>
+                <input type="text" class="form-control" id="lname" name="lname" required=""><br><br>
+            </div>
+            <!-- because it is a demo we dont need to put all the info like health card and date of birth
+            <div class="mb-3">
+                <label for="hcard" class="text-muted font-weight-bold fs-4">Health Card:</label>
+                <input type="text" class="form-control" id="hcard" name="hcard"><br><br>
+            </div>
+        
+            <div class="mb-3">
+                <label for="dob" class="text-muted font-weight-bold fs-4">Date of Birth:</label>
+                <input type="date" class="form-control" id="dob" name="dob"><br><br>
+            </div>-->
+            <div class="mb-3">
+                <label for="contact" class="text-muted font-weight-bold fs-4">Phone#: <span style="color: red;">*</span></label>
+                <input type="text" class="form-control" id="contact" name="contact"><br><br>
+            </div>
+            <div class="mb-3">
+                <label for="contact" class="text-muted font-weight-bold fs-4">CTAS Level: <span style="color: red;">*</span></label>
+                <select class="form-control" id="level">
+                  <option selected="">Choose...</option>
+                  <option style="color:red" >Level 1: Resuscitation</option>
+                  <option style="color: orange">Level 2: Emergent</option>
+                  <option style="color: yellow">Level 3: Urgent</option>
+                  <option style="color: green">Level 4: Less Urgent</option>
+                  <option style="color: blue">Level 5: Non-Urgent</option>
+                </select>
+            </div><br><br>
+            <small class="text-muted"> For this demo we will make thes fields as read-only.</small>
+            <div class="mb-3">
+                <!--Health Card-->
+                <label for="hcard" class="text-muted font-weight-bold fs-4">Health Card</label>
+                <input type="text" class="form-control" id="hcard" name="hcard" readonly>
+                <!--Date Of Birth-->
+                <label for="dob" class="text-muted font-weight-bold fs-4">Date of Birth:</label>
+                <input type="date" class="form-control" id="dob" name="dob" readonly>
+                <!--Gender-->
+                <label for="gender" class="text-muted font-weight-bold fs-4">Gender:</label>
+                   <select class="form-control" id="gender" name="gender" readonly>
+                   <option selected disabled>Choose...</option>
+                   <option value="male">Male</option>
+                   <option value="female">Female</option>
+                   <option value="other">Other</option>
+                  </select>
+                <!--Age-->  
+                <label for="age" class="text-muted font-weight-bold fs-4">Age</label>
+                <input type="text" class="form-control" id="age" name="age" readonly>
+            </div>
+
+            <button type="submit" class="btn btn-info fs-4 btn-lg">Add To List</button>
+            <br><br>
+        </form>
+    </div>
+
+    <!-- footer -->
+
+    <footer class="container-fluid mt-auto" style="background-color: #ADD8E6;">
+        <div class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 ">
+            <div class="col-md-4 d-flex align-items-center">
+                <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                    <svg class="bi" width="30" height="24">
+                        <use xlink:href="#bootstrap"></use>
+                    </svg>
+                </a>
+                <span class="text-muted font-weight-bold fs-5">© 2023 Ontario Health Center all rights reserved.</span>
+            </div>
+            
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <script>
+          $('#myForm').submit(function(e){
+     e.preventDefault();
+
+     if($('#level').val()=='Level 5: Non-Urgent'){
+
+         var url = $(this).closest('form').attr('action'),
+         data = $(this).closest('form').serialize();
+         var date = new Date();
+         var time = "&arrive=" + date.getHours() + ":" + date.getMinutes();
+         data += time;
+         $.ajax({
+             url: "http://localhost:8081/",
+             type: 'POST',
+             data: data,
+             success:function(){
+                 // Whatever you want to do after the form is successfully submitted
+                 window.alert("Your request has been processed.");
+             }
+         });
+     }else{
+          window.alert("Hospital CTAS Level 1-4 operation has been processed.");
+     }
+
+    
+     });
+    </script>
+</body>
+</html>
