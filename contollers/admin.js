@@ -79,23 +79,20 @@ app.post('/',function(req,res){
   }
 
   Model.addPatient(req.body, getPatients);
-  //uncommnet next lane will triger auto-notification service 
-  //sendNotification(req.body.contact, "/admin", res);
+  //uncommnet next line will triger auto-notification service 
+  sendNotification(req.body.contact, "/admin", res);
 })
 
-/*
-app.post("/sendNotification", function (req, res) {
-    phone = '+1' + req.body.contact;
-    client.messages
-        .create({
-            body: 'This is a Hospital Emergency Department. Your have successfully checked-in, and we put you in a waiting list now. Please be patient and visit this 192.168.2.168 to see the detailed list. ',
-            from: config.phoneNumber,
-            to: phone  // here should feed in client phone number
-        })
-        .then(message => console.log(`Message sent with SID: ${message.sid}`))
-        .catch(error => console.error(error));
 
+app.get("/update/:ernumber", function (req, res) {
+
+    function redirectFunc(){
         res.redirect("/admin");
+    }
+
+    Model.updatePatientStatus(req.params,redirectFunc);
+
+    
 });
-*/
+
 module.exports = app;

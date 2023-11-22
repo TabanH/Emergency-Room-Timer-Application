@@ -30,21 +30,15 @@ function addPatient(patient,callback)
 function updatePatientStatus(patient,callback)
 {
   db.run("UPDATE Patients SET status = ? WHERE ernumber = ?",
-         [patient.status, patient.ernumber],
+         ['Done', patient.ernumber],
          function(err) {callback()});
 }
 // select status and counts the waiting number
-function getWaitingPatients(patient,callback)
+function getWaitingPatients(callback)
 {
-  db.run("UPDATE Patients SET status = ? WHERE ernumber = ?",
-         [patient.status, patient.ernumber],
-         function(err) {callback()});
+  db.all("SELECT COUNT(*) AS count FROM Patients WHERE status = 'Waiting'",
+         function(err,results) {callback(results); });
 }
 
-function getEstimatetime(callback)
-{
-    db.all("SELECT COUNT(*) AS count FROM Patients WHERE status = 'Waiting'",
-             function(err,results) {callback(results); });
-}
 // export the functions we have defined
-module.exports = {getAllPatients, getAllPatientsInWaitingList, deletePatient, addPatient, updatePatientStatus, getEstimatetime};
+module.exports = {getAllPatients, getAllPatientsInWaitingList, deletePatient, addPatient, updatePatientStatus, getWaitingPatients};

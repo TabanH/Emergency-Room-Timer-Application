@@ -40,7 +40,7 @@
             </div>
             <div class="mb-3">
                 <label for="lname" class="text-muted font-weight-bold fs-4">Last name: <span style="color: red;">*</span></label>
-                <input type="text" class="form-control" id="lname" name="lname" required=""><br><br>
+                <input type="text" class="form-control" id="lname" name="lname" required="">
             </div>
             <!-- because it is a demo we dont need to put all the info like health card and date of birth
             <div class="mb-3">
@@ -54,7 +54,7 @@
             </div>-->
             <div class="mb-3">
                 <label for="contact" class="text-muted font-weight-bold fs-4">Phone#: <span style="color: red;">*</span></label>
-                <input type="text" class="form-control" id="contact" name="contact"><br><br>
+                <input type="text" class="form-control" id="contact" name="contact">
             </div>
             <div class="mb-3">
                 <label for="contact" class="text-muted font-weight-bold fs-4">CTAS Level: <span style="color: red;">*</span></label>
@@ -66,7 +66,7 @@
                   <option style="color: green">Level 4: Less Urgent</option>
                   <option style="color: blue">Level 5: Non-Urgent</option>
                 </select>
-            </div><br><br>
+            </div>
             <small class="text-muted"> For this demo we will make thes fields as read-only.</small>
             <div class="mb-3">
                 <!--Health Card-->
@@ -127,7 +127,7 @@
          var time = "&arrive=" + date.getHours() + ":" + date.getMinutes();
          data += time;
          $.ajax({
-             url: "http://localhost:8081/",
+             url: "http://localhost:8081/admin",
              type: 'POST',
              data: data,
              success:function(){

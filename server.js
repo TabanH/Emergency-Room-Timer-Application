@@ -36,20 +36,12 @@ const predict_wait_time = (req, res, next) => {
         numOfPatients = result[0]['count'];
         //Set default value 17 mins for each patient in emergency 
         waitingTime = numOfPatients * 17;
-        /*
-        waitingTime = 0;
-        while(numOfPatients>0){
-            random = Math.floor(Math.random() * (20 - 15 + 1)) + 15;
-            waitingTime += random;
-            numOfPatients--;
-        }
-        //res.render('index',{estimate: waitingTime});
-        */
+
         req.waitingTime = waitingTime;
         //console.log('Current Waiting Time: ' + waitingTime);
     }
 
-    Model.getEstimatetime(output);
+    Model.getWaitingPatients(output);
 
     next();
 };
