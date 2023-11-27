@@ -1,77 +1,155 @@
 <!DOCTYPE html>
 <html lang="en-CA" class="h-100">
-<!--head-->
-<head>
-    
-<meta charset="UTF-8">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<title> ERTA Waiting List</title>
-</head>
-<body class="d-flex flex-column h-100">
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white">
-            <div class="container-fluid">
-            <a class="navbar-brand" href="#">ERTA</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav col-12 col-lg-auto me-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="index.html" class="nav-link px-2 "></a></li>
-                </ul>            
-            </div>
-            </div>
-        </nav>
-    </header>
-	<div class="container-fluid ">
-		<table class="col-lg-10 table table-striped table-hover mt-5">
-			<thead>
-				<tr>
-					<th scope="col">ERID </th>
-					<th scope="col">First Name</th>
-					<th scope="col">Last Name </th>
-					<th scope="col">Arrival Time</th>
-					<th scope="col">Estimate Waiting </th>
-                    <th scope="col">Check In </th>
-				</tr>
-			</thead>
-			<tbody>
-				{{#patients}}
-				<tr>
-					<td>{{ernumber}}</td>
-					<td>{{firstname}}</td>
-					<td>{{lastname}}</td>
-					<td>{{arrive}}</td>
-                    <td><a href="/admin/sendNotify">Ok</a></td>      
-				</tr>
-				{{/patients}}
-			</tbody>
-		</table>
-	</div>
-    <footer class="container footer mt-auto">
-        <div class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-            <div class="col-md-4 d-flex align-items-center">
-            <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
-                <svg class="bi" width="30" height="24">
-                <use xlink:href="#bootstrap"></use>
-                </svg>
-            </a>
-            <span class="text-muted">© 2023 ERTA Waiting. All rights reserved. </span>
-            </div>
-            <ul class="nav col-md-4 justify-content-end">
-            <li class="nav-item"><a href="index.html" class="nav-link px-2 text-muted">Home</a></li>
-            </ul>
-        </div>
-    </footer>
-</body>
+	<head>
+		<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+				<!-- Bootstrap CSS -->
+				<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+					<title>Admin Panel</title>
+					<style>
+						body {
+						padding-top: 56px;
+						}
 
+						.navbar-brand img {
+						max-width: 30px;
+						margin-right: 5px;
+						}
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+						.navimage {
+						background: url('https://prestigeer.com/wp-content/uploads/2023/02/why-choose-a-full-service-emergency-room.jpg') center/cover no-repeat;
+						color: white;
+						text-align: center;
+						padding: 200px 0;
+						}
 
+						.navimage .title {
+						font-size: 2.5em;
+						}
+
+						.navimage .pre-title {
+						font-size: 1.2em;
+						margin-top: 20px;
+						}
+
+					</style>
+					<style>
+						.disabled-link {
+						pointer-events: none;
+						color: gray;
+						}
+					</style>
+				</head>
+	<body class="d-flex flex-column h-100">>
+
+		<header>
+			<!-- Navbar -->
+			<nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #ADD8E6;">
+				<div class="container">
+					<a class="navbar-brand text-white font-weight-bold fs-4" href="#">
+						<img src="https://thumbs.dreamstime.com/z/hospital-symbol-pictogram-illustration-blue-background-hospital-symbol-pictogram-illustration-139064365.jpg?w=768"
+							alt="Hospital Logo" width="30" height="30" class="d-inline-block align-top">
+							Hospital
+						</a>
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+							aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav ms-auto">
+							<li class="nav-item">
+								<a class="nav-link" href="#">Home</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">About</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Contact</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</header>
+
+		<!-- navimage Section -->
+		<div class="navimage" id="home">
+
+		</div>
+
+		<!-- Table containg info -->
+		<div class="container-fluid">
+			<table class="col-lg-10 table table-striped table-hover mx-auto mt-3">
+				<thead class="bg-danger text-white">
+					<tr>
+						<th scope="col">ERID </th>
+						<th scope="col">First Name</th>
+						<th scope="col">Last Name </th>
+						<th scope="col">Arrival Time</th>
+						<th scope="col">Contact</th>
+						<th scope="col">Done?</th>
+						<th scope="col">Status</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#patients}}
+					<tr>
+						<td>{{ernumber}}</td>
+						<td>{{firstname}}</td>
+						<td>{{lastname}}</td>
+						<td>{{arrive}}</td>
+						<td>{{contact}}</td>
+						<td>
+							<a href="/admin/update/{{ernumber}}" id="link" onclick="disableLink(this)">Yes</a>
+						</td>
+						<td>{{status}}</td>
+					</tr>
+					{{/patients}}
+				</tbody>
+			</table>
+		</div>
+
+		<!-- Footer -->
+		<footer class="container-fluid mt-auto" style="background-color: #ADD8E6;">
+			<div class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 ">
+				<div class="col-md-4 d-flex align-items-center">
+					<a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+						<svg class="bi" width="30" height="24">
+							<use xlink:href="#bootstrap"></use>
+						</svg>
+					</a>
+					<span class="text-muted font-weight-bold fs-5">© 2023 Ontario Health Center all rights reserved.</span>
+				</div>
+			</div>
+		</footer>
+<!--
+		<footer class="container footer mt-auto" style="background-color: #ADD8E6;">
+			<div class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+				<div class="col-md-4 d-flex align-items-center">
+					<a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+						<svg class="bi" width="30" height="24">
+							<use xlink:href="#bootstrap"></use>
+						</svg>
+					</a>
+					<span class="text-muted">© 2023 ERTA Waiting. All rights reserved. </span>
+				</div>
+				<ul class="nav col-md-4 justify-content-end">
+					<li class="nav-item">
+						<a href="index.html" class="nav-link px-2 text-muted">Contact Us</a>
+					</li>
+				</ul>
+			</div>
+		</footer>
+-->		
+		<script>
+			function disableLink(e){
+			$(e).addClass("disabled-link");
+			}
+		</script>
+		<!-- Bootstrap JS and dependencies (Popper.js) -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-MJwEOjyqsuTlvF4n+aLZDmzsdwlC3ZcREH8bBWCOrA3LSObeCqJfScJ7T4Wswf68" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+	</body>
 </html>
